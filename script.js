@@ -117,22 +117,28 @@ function addItem(cityInput, stateInput) {
     });
 
     //delete button
-    deleteBtn.addEventListener('click', function() {
+    deleteBtn.addEventListener('click', function(event) {
+        event.stopPropagation();
         cityList.removeChild(cityBox);
         savedCityIndex--;
         localStorage.setItem('city index', savedCityIndex);
-        savedArr = JSON.parse(localStorage.getItem('storArr').replace(/ /g, ''))
+        var savedArr = JSON.parse(localStorage.getItem('storArr'))
         for (let i = 0; i < savedArr.length; i++) {
-            if (savedCityIndex <= 0) {
-                return
-            } else if (cityBox.textContent.replace('X', '').replace(/ /g, '') == savedArr[i]) {
+            if (cityBox.textContent.replace('X', '').replace(/ /g, '') == savedArr[i]) {
                 localStorage.removeItem('city ' + (i + 1).toString())
-                localStorage.removeItem('storArr');
-                localStorage.setItem('storArr', JSON.stringify(savedArr[i])) 
-                console.log(savedArr.length)  
+                delete savedArr[i]
+                filtArr = savedArr.filter(savedArr => {
+                    return savedArr[i] !== null;
+                })
+                console.log(filtArr)
+                console.log(savedArr[i])
+                console.log(cityBox.textContent.replace('X', '').replace(/ /g, ''))
+
             }
         }   
-
+                localStorage.removeItem('storArr');
+                localStorage.setItem('storArr', JSON.stringify(filtArr))
+           
     });
 };
 
@@ -145,8 +151,7 @@ function save() {
         localStorage.setItem('city index', savedCityIndex);
     }
     storArr.push(localStorage.getItem('city ' + savedCityIndex));
-    localStorage.setItem('storArr', JSON.stringify(storArr));
-
+    localStorage.setItem('storArr', JSON.stringify(storArr).replace(/ /g, ''));
 }
 
 //gets stored box values

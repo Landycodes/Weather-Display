@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+    <script
+    src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+    crossorigin="anonymous"
+  ></script>
+    <title>weather Display</title>
+</head>
+<body>
+    <nav id="navbar" class="d-flex align-items-center">
+        <span id="menu"><img id="menuicon" src="./assets/menu icon.png" alt="Menu"></span>
+        <h1 id="title">Weather Display</h1>
+    </nav>
+    <div id="menu-list" class="position-absolute hide">
+        <input id="citysearch" type="text" placeholder="City">
+        <input id="statesearch" type="text" maxlength="2" placeholder="State">
+        <span id="searchbutton"><img id="searchicon" src="./assets/search button icon.png" alt="search"></span>
+        <div id="citylist">
+        <!--adds history here-->
+        </div>
+      </div>
+    <section>
+    <div id="weatherbox">
+        <div><span id="currentcity">Open the menu to search a location!</span></div>
+        <div><span id="currentdate"></span></div>
+        <div><img id="boxicon" src=""></div>
+        <div id="boxinfo">
+            <div><span id="Temp"></span></div>
+            <div><span id="Wind"></span></div>
+            <div><span id="Humid"></span></div>
+            <div id="UVindex"><span id="colorIndex"></span></div>
+        </div>
+    </div>
+    </section>
+    <h3 class="text-center">5-Day Forecast</h3>
+    <section class="d-flex flex-row flex-wrap justify-content-center w-75 mt-0 m-auto">
+        <div class="card border-0 mb-3 mr-1" style="min-width: 8rem; max-width: 18rem;">
+            <div class="card-header acc-color"><span id="day1"></span></div>
+            <div class="card-body text-dark main-color">
+              <h5 class="card-title"><img id="icon1"></h5>
+              <p class="card-text"><span id="temp1"></span></p>
+              <p class="card-text"><span id="wind1"></span></p>
+              <p class="card-text"><span id="humid1"></span></p>
+            </div>
+        </div>
+          <div class="card border-0 mb-3 mr-1" style="min-width: 8rem; max-width: 18rem;">
+            <div class="card-header acc-color"><span id="day2"></span></div>
+            <div class="card-body text-dark main-color">
+              <h5 class="card-title"><img id="icon2"></h5>
+              <p class="card-text"><span id="temp2"></span></p>
+              <p class="card-text"><span id="wind2"></span></p>
+              <p class="card-text"><span id="humid2"></span></p>
+            
+            </div>
+        </div>
+          <div class="card border-0 mb-3 mr-1" style="min-width: 8rem; max-width: 18rem;">
+            <div class="card-header acc-color"><span id="day3"></span></div>
+            <div class="card-body text-dark main-color">
+              <h5 class="card-title"><img id="icon3"></h5>
+              <p class="card-text"><span id="temp3"></span></p>
+              <p class="card-text"><span id="wind3"></span></p> 
+              <p class="card-text"><span id="humid3"></span></p>
+          
+            </div>
+        </div>
+          <div class="card border-0 mb-3 mr-1" style="min-width: 8rem; max-width: 18rem;">
+            <div class="card-header acc-color"><span id="day4"></span></div>
+            <div class="card-body text-dark main-color">
+              <h5 class="card-title"><img id="icon4"></h5>
+              <p class="card-text"><span id="temp4"></span></p>
+              <p class="card-text"><span id="wind4"></span></p>
+              <p class="card-text"><span id="humid4"></span></p>
+            
+            </div>
+          
+        </div>
+          <div class="card border-0 mb-3" style="min-width: 8rem; max-width: 18rem;">
+            <div class="card-header acc-color"><span id="day5"></span></div>
+            <div class="card-body text-dark main-color">
+              <h5 class="card-title"><img id="icon5"></h5>
+              <p class="card-text"><span id="temp5"></span></p>
+              <p class="card-text"><span id="wind5"></span></p>
+              <p class="card-text"><span id="humid5"></span></p>
+            </div>
+        </div>
+    </section>
+
+<script src="./script.js"></script>
+</body>
+</html>

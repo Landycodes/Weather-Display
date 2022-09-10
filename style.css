@@ -1,0 +1,147 @@
+:root {
+    --main: #C0C0C0;
+    --accent: #7393B3;
+    --backgrnd: #F5F5DC;
+}
+body {
+    background-color: var(--backgrnd);
+}
+button {
+    border: none;
+}
+button:active {
+    border: none;
+}
+#navbar {
+    height: 75px;
+    background-color: var(--main);
+}
+#menu {
+    position: absolute;
+    margin-left: 25px;
+}
+#menuicon {
+    cursor: pointer;
+    height: 35px;
+    width: auto;
+    background-color: var(--accent);
+    border-radius: 5px;
+    border: 3px solid var(--backgrnd);
+}
+#menu-list {
+    z-index: 1;
+    border-bottom-right-radius: 10px;
+    box-shadow: 2px 2px 4px var(--accent);
+    border: 1px solid var(--main);
+    height: 300px;
+    width: 200px;
+    background-color: var(--main);
+}
+#citysearch {
+    width: 63%;
+    outline: none;
+}
+#statesearch {
+    width: 25%;
+    outline: none;
+    margin-left: -5px;
+}
+
+#searchicon {
+    position: absolute;
+    margin-top: 6px;
+    margin-left: 2px;
+    height: 20px;
+    width: auto;
+    cursor: pointer;
+}
+#citylist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#citylist button {
+    display: inline-block;
+    text-align: center;
+    font-size: 15px;
+    width: 60px;
+    height: 25px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background-color: var(--accent);
+}
+.citybox {
+    cursor: pointer;
+    text-align: center;
+    width: 150px;
+    height: 25px;
+    margin-top: 15px;
+    border-radius: 5px;
+    background-color: var(--accent);
+}
+.deleteBtn {
+    position: absolute;
+    left: 180px;
+    color: red;
+    font-weight: bolder;
+}
+
+
+#title {
+    margin: 0 auto;
+    padding: 0 15px 5px 15px;
+    border: 3px solid var(--backgrnd);
+    background-color: var(--accent);
+    border-radius: 15px;
+}
+#weatherbox {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 5px auto;
+    width: 500px;
+    height: 200px;
+    background-color: var(--main);
+    border: 5px solid var(--accent);
+    border-radius: 2px;
+}
+#currentcity {
+    font-size: 18px;
+    font-weight: bold;
+}
+#date {
+    font-size: 18px;
+}
+#boxinfo {
+    margin-right: 20px;
+    display: flex;
+    width: 425px;
+    height: 40px;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+#boxicon {
+    height: 70px;
+    width: auto;
+    padding: 0;
+    margin: 0;
+}
+#colorIndex {
+    display: inline-block;
+    text-align: center;
+    width: 20px;
+    border-radius: 3px;
+    color: black;
+}
+.acc-color {
+    background-color: var(--accent);
+}
+
+.main-color {
+    background-color: var(--main);
+}
+
+.hide {
+    display: none;
+}

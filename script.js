@@ -14,7 +14,7 @@ var menuBtn = document.getElementById('menu');
 var menuList = document.getElementById('menu-list');
 var citySearchInput = document.getElementById('citysearch');
 var stateSearchInput = document.getElementById('statesearch');
-var searchBtn = document.getElementById('searchicon')
+var searchBtn = document.getElementById('searchicon');
 var addBtn = document.getElementById('addcitybtn');
 var cityList = document.getElementById('citylist');
 var deleteBtn = document.querySelector('.deleteBtn');
@@ -46,19 +46,17 @@ var tempFive = document.getElementById('temp5');
 var windFive = document.getElementById('wind5');
 var humidFive = document.getElementById('humid5')
 
-var savedCityIndex = localStorage.getItem('city index');
-var storArr = JSON.parse(localStorage.getItem('storArr'));
+var cityArray = JSON.parse(localStorage.getItem('cityArray'));
 
 var click = 0;
 var city;
 var state;
 
-if (storArr === null) {
-    storArr = [];
+if (cityArray === null) {
+    cityArray = [];
 } else {
-    storArr = JSON.parse(localStorage.getItem('storArr').replace(/ /g, ''));
+    cityArray = JSON.parse(localStorage.getItem('cityArray').replace(/ /g, ''));
 }
-
 
 
 
@@ -80,12 +78,11 @@ searchBtn.addEventListener('click', function() {
     if (citySearchInput.value === '' || stateSearchInput.value === '') {
         window.alert('please fill out both city and state try again')
         return
-    } else if (savedCityIndex >= 6){
+    } else if (cityArray.length >= 6){
         return
     } else { 
         localStorage.setItem('current city', citySearchInput.value);
         localStorage.setItem('current state', stateSearchInput.value);
-        localStorage.setItem('city index', savedCityIndex);
         city = localStorage.getItem('current city');
         state = localStorage.getItem('current state');
         addItem();
@@ -125,58 +122,38 @@ function addItem(cityInput, stateInput) {
     deleteBtn.addEventListener('click', function(event) {
         event.stopPropagation
         cityList.removeChild(cityBox);
-        savedCityIndex--;
-        localStorage.setItem('city index', savedCityIndex);
-        var savedArr = JSON.parse(localStorage.getItem('storArr'))
+        var savedArr = JSON.parse(localStorage.getItem('cityArray'))
         for (let i = 0; i < savedArr.length; i++) {
             if (cityBox.textContent.replace('X', '').replace(/ /g, '') == savedArr[i].replace(/ /g, '')) {//
-                localStorage.removeItem('city ' + (i + 1).toString())
                 delete savedArr[i]
                 var filtArr = savedArr.filter(savedArr => {
                     return savedArr[i] !== null;
                 });
-                console.log(filtArr)
-                console.log(savedArr)
-                console.log(storArr)
-                localStorage.removeItem('storArr');
-                localStorage.setItem('storArr', JSON.stringify(filtArr)) 
+                localStorage.removeItem('cityArray');
+                localStorage.setItem('cityArray', JSON.stringify(filtArr)) 
                 return
-            } else if (cityInput + ',' + stateInput) {
-               localStorage.removeItem('city ' + (i + 1).toString())
-               delete savedArr[i]
-               var filtArr = savedArr.filter(savedArr => {
-                   return savedArr[i] !== null;
-               });
-                console.log(filtArr)
-                console.log(savedArr)
-                console.log(storArr)
-                localStorage.removeItem('storArr');
-                localStorage.setItem('storArr', JSON.stringify(filtArr))
-            }
+            } 
         }   
 
-           
     });
 };
 
 //saves each input and stores inputs into an array
 function save() {
     var cityBox = document.querySelectorAll('.citybox')
-    savedCityIndex++;
     for (let i = 0; i < cityBox.length; i++) {
-        localStorage.setItem('city ' + savedCityIndex, cityBox[i].innerText.replace('X', ''));
-        localStorage.setItem('city index', savedCityIndex);
+        localStorage.setItem('cityArray', cityBox[i].innerText.replace('X', ''));
     }
-    storArr.push(localStorage.getItem('city ' + savedCityIndex));
-    localStorage.setItem('storArr', JSON.stringify(storArr));
+    cityArray.push(localStorage.getItem('cityArray'));
+    localStorage.setItem('cityArray', JSON.stringify(cityArray));
 }
 
 //gets stored box values
 function savedValues() {//
-    if (localStorage.getItem('storArr') === null) {
+    if (localStorage.getItem('cityArray') === null) {
         return
     }
-    var savedItems = JSON.parse(localStorage.getItem('storArr'));
+    var savedItems = JSON.parse(localStorage.getItem('cityArray'));
     for (let i = 0; i < savedItems.length; i++) {
         if (savedItems[i] === null) {
             return

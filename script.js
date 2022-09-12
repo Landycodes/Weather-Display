@@ -197,7 +197,7 @@ if (localStorage.getItem('current city') != null && localStorage.getItem('curren
 function weatherSearch() { 
     city = localStorage.getItem('current city');
     state = localStorage.getItem('current state');
-   fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + city +',' + state +',us&limit=1&appid=195c4d43c50449f776aa4216da66c55a')
+   fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + city +',' + state +',us&limit=1&appid=195c4d43c50449f776aa4216da66c55a')
     .then(function (response) { 
         if (!response.ok) {
          window.alert('Something went wrong. please try again later')
@@ -247,7 +247,7 @@ function weatherSearch() {
                 UVIndex.textContent = 'UV index: ';
                 UVIndex.appendChild(colorIndex);
 
-            mainIcon.src = 'http://openweathermap.org/img/wn/'+ weatherData.current.weather[0].icon +'@2x.png';
+            mainIcon.src = 'https://openweathermap.org/img/wn/'+ weatherData.current.weather[0].icon +'@2x.png';
             //5day forecast dates
             var dayDateOne = new Date(weatherData.daily[1].dt * 1000);
             dayOne.textContent = week[dayDateOne.getDay()];
@@ -260,11 +260,11 @@ function weatherSearch() {
             var dayDateFive = new Date(weatherData.daily[5].dt * 1000);
             dayFive.textContent = week[dayDateFive.getDay()];
             //5day icons
-            iconOne.src = 'http://openweathermap.org/img/wn/'+ weatherData.daily[0].weather[0].icon +'.png';
-            iconTwo.src = 'http://openweathermap.org/img/wn/'+ weatherData.daily[1].weather[0].icon +'.png';
-            iconThree.src = 'http://openweathermap.org/img/wn/'+ weatherData.daily[2].weather[0].icon +'.png';
-            iconFour.src = 'http://openweathermap.org/img/wn/'+ weatherData.daily[3].weather[0].icon +'.png';
-            iconFive.src = 'http://openweathermap.org/img/wn/'+ weatherData.daily[4].weather[0].icon +'.png';
+            iconOne.src = 'https://openweathermap.org/img/wn/'+ weatherData.daily[0].weather[0].icon +'.png';
+            iconTwo.src = 'https://openweathermap.org/img/wn/'+ weatherData.daily[1].weather[0].icon +'.png';
+            iconThree.src = 'https://openweathermap.org/img/wn/'+ weatherData.daily[2].weather[0].icon +'.png';
+            iconFour.src = 'https://openweathermap.org/img/wn/'+ weatherData.daily[3].weather[0].icon +'.png';
+            iconFive.src = 'https://openweathermap.org/img/wn/'+ weatherData.daily[4].weather[0].icon +'.png';
             //5day temp and wind
             tempOne.textContent = 'Temp: ' + Math.round(weatherData.daily[0].temp.day) + '°F';
             windOne.textContent = 'Wind: ' + Math.round(weatherData.daily[0].wind_speed) + 'Mph';

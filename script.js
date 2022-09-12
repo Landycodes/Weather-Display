@@ -55,7 +55,12 @@ var state;
 
 if (storArr === null) {
     storArr = [];
+} else {
+    storArr = JSON.parse(localStorage.getItem('storArr').replace(/ /g, ''));
 }
+
+
+
 
 
 //opens and closes side menu
@@ -109,35 +114,47 @@ function addItem(cityInput, stateInput) {
     //button to go to a saved location
     cityBox.addEventListener('click', function() {
         cityBox.removeChild(deleteBtn);
-        boxArr = cityBox.innerText.split(',');
-        city = localStorage.setItem('current city', boxArr[0]);
-        state = localStorage.setItem('current state', boxArr[1]);
-        weatherSearch();
+        var boxSplit = cityBox.innerText.split(',');
+        city = localStorage.setItem('current city', boxSplit[0]);
+        state = localStorage.setItem('current state', boxSplit[1]);
+        weatherSearch(); 
        cityBox.appendChild(deleteBtn)
     });
 
     //delete button
     deleteBtn.addEventListener('click', function(event) {
-        event.stopPropagation();
+        event.stopPropagation
         cityList.removeChild(cityBox);
         savedCityIndex--;
         localStorage.setItem('city index', savedCityIndex);
         var savedArr = JSON.parse(localStorage.getItem('storArr'))
         for (let i = 0; i < savedArr.length; i++) {
-            if (cityBox.textContent.replace('X', '').replace(/ /g, '') == savedArr[i]) {
+            if (cityBox.textContent.replace('X', '').replace(/ /g, '') == savedArr[i].replace(/ /g, '')) {//
                 localStorage.removeItem('city ' + (i + 1).toString())
                 delete savedArr[i]
-                filtArr = savedArr.filter(savedArr => {
+                var filtArr = savedArr.filter(savedArr => {
                     return savedArr[i] !== null;
-                })
+                });
                 console.log(filtArr)
-                console.log(savedArr[i])
-                console.log(cityBox.textContent.replace('X', '').replace(/ /g, ''))
-
-            }
-        }   
+                console.log(savedArr)
+                console.log(storArr)
+                localStorage.removeItem('storArr');
+                localStorage.setItem('storArr', JSON.stringify(filtArr)) 
+                return
+            } else if (cityInput + ',' + stateInput) {
+               localStorage.removeItem('city ' + (i + 1).toString())
+               delete savedArr[i]
+               var filtArr = savedArr.filter(savedArr => {
+                   return savedArr[i] !== null;
+               });
+                console.log(filtArr)
+                console.log(savedArr)
+                console.log(storArr)
                 localStorage.removeItem('storArr');
                 localStorage.setItem('storArr', JSON.stringify(filtArr))
+            }
+        }   
+
            
     });
 };
@@ -151,7 +168,7 @@ function save() {
         localStorage.setItem('city index', savedCityIndex);
     }
     storArr.push(localStorage.getItem('city ' + savedCityIndex));
-    localStorage.setItem('storArr', JSON.stringify(storArr).replace(/ /g, ''));
+    localStorage.setItem('storArr', JSON.stringify(storArr));
 }
 
 //gets stored box values
@@ -173,11 +190,11 @@ function savedValues() {//
 }
 
 //displays last location input
-if (localStorage.getItem('current city') != null && localStorage.getItem('current state') != null) {
+if (localStorage.getItem('current city') != null && localStorage.getItem('current state') != null) {    
     weatherSearch();
 }
 
-function weatherSearch() {
+function weatherSearch() { 
     city = localStorage.getItem('current city');
     state = localStorage.getItem('current state');
    fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + city +',' + state +',us&limit=1&appid=195c4d43c50449f776aa4216da66c55a')

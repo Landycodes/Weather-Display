@@ -6,6 +6,7 @@ once you click the magnifying glass you will see the current weather as well as 
 the menu will save the locations you look up. however the delete button is a little buggy so it is 
 recommended that you refresh the page before deleting an icon to avoid potential bugs for the list.
 you can also click on a saved location to pull up the weather info for that place.
-here is a link to the [weather-display](https://landycodes.github.io/Weather-Display/)
+here is a link to the website.
+# [weather-display](https://landycodes.github.io/Weather-Display/)
 
 ![weather app screenshot](https://user-images.githubusercontent.com/103873915/189568505-7b16dbe1-912d-4b97-82c1-912373229ced.png)

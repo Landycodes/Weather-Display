@@ -88,6 +88,10 @@ searchBtn.addEventListener('click', function() {
         addItem();
         save();
         weatherSearch();
+
+        for(let i = 0; i < 1; i++) {
+            location.reload()
+        }
     }
 });
 
@@ -119,22 +123,25 @@ function addItem(cityInput, stateInput) {
     });
 
     //delete button
-    deleteBtn.addEventListener('click', function(event) {
-        event.stopPropagation
+    deleteBtn.addEventListener('click', function() {
         cityList.removeChild(cityBox);
         var savedArr = JSON.parse(localStorage.getItem('cityArray'))
         for (let i = 0; i < savedArr.length; i++) {
-            if (cityBox.textContent.replace('X', '').replace(/ /g, '') == savedArr[i].replace(/ /g, '')) {//
+                console.log(cityBox.innerText.replace('X', '').replace(/ /g, ''))
+                console.log(savedArr[i].replace(/ /g, ''))
+                console.log(cityArray);
+            if (cityBox.innerText.replace('X', '').replace(/ /g, '').toString() == savedArr[i].replace(/ /g, '').toString()) {//
                 delete savedArr[i]
                 var filtArr = savedArr.filter(savedArr => {
                     return savedArr[i] !== null;
                 });
                 localStorage.removeItem('cityArray');
                 localStorage.setItem('cityArray', JSON.stringify(filtArr)) 
-                return
             } 
-        }   
-
+        } 
+        for(let i = 0; i < 1; i++) {
+            location.reload()
+        }
     });
 };
 
@@ -261,5 +268,3 @@ function weatherSearch() {
         })
     });
 };
-
-
